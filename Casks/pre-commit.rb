@@ -4,22 +4,22 @@ cask "pre-commit" do
 
   on_macos do
     on_intel do
-      sha256 "5b105b29904858d51aa8cd3e9464c4974499bc3d9e6a5b82bff9c363b7e32c3a"
+      sha256 "6da23e7287231aafe8c2fecff052918ce3e9ab6c10df99630db46865f7bd0a39"
       url "https://github.com/blairham/go-pre-commit/releases/download/v#{version}/pre-commit_Darwin_x86_64.tar.gz"
     end
     on_arm do
-      sha256 "b475b557be5e007879463638270fce52618ed96dfa7e41ba0495c185f91333eb"
+      sha256 "d5f363b1086eb75a9994ca3c15b9663fb50ee56b961bcc9ac748197f2cc524c3"
       url "https://github.com/blairham/go-pre-commit/releases/download/v#{version}/pre-commit_Darwin_arm64.tar.gz"
     end
   end
 
   on_linux do
     on_intel do
-      sha256 "4a7c23177ef293dddc178f4fcf7e65a189fabd0f9719deded9ec5d9f7f318ba2"
+      sha256 "8e519e912522c0ab201851709542f21fcc3c1f4190adc0ea296728e5b9893be3"
       url "https://github.com/blairham/go-pre-commit/releases/download/v#{version}/pre-commit_Linux_x86_64.tar.gz"
     end
     on_arm do
-      sha256 "7b96b3d74b6435f82380b5086271faeffb076249b794e6a713f8639d83a6b1c0"
+      sha256 "11de73f46bd67535f92ec3966ebc37ad9baadb9aa3f70fc79e132861b8a684a1"
       url "https://github.com/blairham/go-pre-commit/releases/download/v#{version}/pre-commit_Linux_arm64.tar.gz"
     end
   end
