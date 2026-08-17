@@ -5,21 +5,21 @@
 class Cswap < Formula
   desc "Multi-account manager for Claude Code (Go rewrite of claude-swap)"
   homepage "https://github.com/blairham/go-claude-swap"
-  version "0.1.1"
+  version "0.2.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/blairham/go-claude-swap/releases/download/v0.1.1/cswap_Darwin_x86_64.tar.gz"
-      sha256 "439effaabd44a2f4d1eed0df160ed3e57d4f635d88eb99e2fb3a05be7fca16bd"
+      url "https://github.com/blairham/go-claude-swap/releases/download/v0.2.0/cswap_Darwin_x86_64.tar.gz"
+      sha256 "68f2cc888b0f5b7a1d7abc847817697e089112aaba2ad44048b8a58a8cf89060"
 
       define_method(:install) do
         bin.install "cswap"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/blairham/go-claude-swap/releases/download/v0.1.1/cswap_Darwin_arm64.tar.gz"
-      sha256 "37c9510af6f8266328ca66b891cb7be6312073028c26a6fd52783521e89bee49"
+      url "https://github.com/blairham/go-claude-swap/releases/download/v0.2.0/cswap_Darwin_arm64.tar.gz"
+      sha256 "083f1485a8a85566ebe56a8db007acf0c9496290a319534acf29fa048f864e32"
 
       define_method(:install) do
         bin.install "cswap"
@@ -29,15 +29,15 @@ class Cswap < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/go-claude-swap/releases/download/v0.1.1/cswap_Linux_x86_64.tar.gz"
-      sha256 "4d20333e4b7f7a88b4c71786d0ffc4ad32bc020cc8b3ad2aea85e8b6c6f5488b"
+      url "https://github.com/blairham/go-claude-swap/releases/download/v0.2.0/cswap_Linux_x86_64.tar.gz"
+      sha256 "7b45745408c683a466678ffd0af381691833a16fcf186847c72c25cf653aa4e8"
       define_method(:install) do
         bin.install "cswap"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/go-claude-swap/releases/download/v0.1.1/cswap_Linux_arm64.tar.gz"
-      sha256 "572e9dfcf123e1d5798b257cb0529e4625ae2d5f03990b8d5c934e3288ab8aa0"
+      url "https://github.com/blairham/go-claude-swap/releases/download/v0.2.0/cswap_Linux_arm64.tar.gz"
+      sha256 "cdb2aa23d7f92cb158f10a210130ed38c79a14050f8ff2b50b58d514b3e40270"
       define_method(:install) do
         bin.install "cswap"
       end
