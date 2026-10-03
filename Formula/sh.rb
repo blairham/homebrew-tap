@@ -5,13 +5,13 @@
 class Sh < Formula
   desc "A shell parser, interpreter and formatter in Go, with bash, zsh, ksh, dash and ash dialects"
   homepage "https://github.com/blairham/sh"
-  version "0.0.22"
+  version "0.0.23"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/blairham/sh/releases/download/v0.0.22/sh_Darwin_x86_64.tar.gz"
-      sha256 "5683685f241bbbb2059350c05e909a73cd9bea4bb85e645b2633e7cc11e41210"
+      url "https://github.com/blairham/sh/releases/download/v0.0.23/sh_Darwin_x86_64.tar.gz"
+      sha256 "3ae108d1dbeaec77476ad4b5618fb7aa7b7333f86599d08c12d906e870d1fe27"
 
       define_method(:install) do
         # Every shell in the archive, `ash` included. An explicit list is what
@@ -42,8 +42,8 @@ class Sh < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/blairham/sh/releases/download/v0.0.22/sh_Darwin_arm64.tar.gz"
-      sha256 "0d0eb6dc6c6b2e62b95a590e99d06596de6b551c0361bef67c4eedebf9cac8f0"
+      url "https://github.com/blairham/sh/releases/download/v0.0.23/sh_Darwin_arm64.tar.gz"
+      sha256 "38b4711751d6c7cc981f8f84d9cdedaac794d52fff4416c97b1cf3f40f0b71d4"
 
       define_method(:install) do
         # Every shell in the archive, `ash` included. An explicit list is what
@@ -77,8 +77,8 @@ class Sh < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/sh/releases/download/v0.0.22/sh_Linux_x86_64.tar.gz"
-      sha256 "6c084ee0e47f5e15416ec2ca8dbef32c9677cfde8dda50ffcdf79e955f0c597a"
+      url "https://github.com/blairham/sh/releases/download/v0.0.23/sh_Linux_x86_64.tar.gz"
+      sha256 "c03e2ecc401e42a22fba6cb2531370186f94577f94e527cf959ff746d3c33b6b"
       define_method(:install) do
         # Every shell in the archive, `ash` included. An explicit list is what
         # dropped it once already: the archive carries all six, and
@@ -108,8 +108,8 @@ class Sh < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/sh/releases/download/v0.0.22/sh_Linux_arm64.tar.gz"
-      sha256 "789993a3c012ffa49885e3020dee0889f41201ce9ad5807e7a0d9b92098deb65"
+      url "https://github.com/blairham/sh/releases/download/v0.0.23/sh_Linux_arm64.tar.gz"
+      sha256 "39f196d032bfe2fa933e6a14c1e626a357c1df69e64c6a36215fb45c0dec2c74"
       define_method(:install) do
         # Every shell in the archive, `ash` included. An explicit list is what
         # dropped it once already: the archive carries all six, and
