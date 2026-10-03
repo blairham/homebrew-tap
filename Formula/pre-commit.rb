@@ -5,21 +5,21 @@
 class PreCommit < Formula
   desc "A fast Go reimplementation of pre-commit"
   homepage "https://github.com/blairham/go-pre-commit"
-  version "4.6.12"
+  version "4.6.13"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.12/pre-commit_Darwin_x86_64.tar.gz"
-      sha256 "7b8af0072c35cffaa0a11c19d2b2c6c0f03bcf0f3bdfca7174c0e83856f40f2d"
+      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.13/pre-commit_Darwin_x86_64.tar.gz"
+      sha256 "7a20323268f8004704c1959be345e56b376a94a234539a4052fd771f83a9b446"
 
       define_method(:install) do
         bin.install "pre-commit"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.12/pre-commit_Darwin_arm64.tar.gz"
-      sha256 "9dca08ca88e682de4046e5d932e9337fb54182b3b889f00bff5dd4dfaa8974e3"
+      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.13/pre-commit_Darwin_arm64.tar.gz"
+      sha256 "ee81472b5efc8133857317d85b40c5f6304f0c243f51727dbddebffa90db809c"
 
       define_method(:install) do
         bin.install "pre-commit"
@@ -29,22 +29,22 @@ class PreCommit < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.12/pre-commit_Linux_x86_64.tar.gz"
-      sha256 "d213ba9d5a80cddce3220b9c1026a3c00c6497cc07340ac21824ad8ce3413725"
+      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.13/pre-commit_Linux_x86_64.tar.gz"
+      sha256 "2f53ea389d66fad9e36a5653b47bb9f74fed3aade83816cc205e7c3aa74e95b9"
       define_method(:install) do
         bin.install "pre-commit"
       end
     end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.12/pre-commit_Linux_armv6.tar.gz"
-      sha256 "a75e167b4b3098a1c0b0ae3aee654e9b58fbb2ea7078f01e0e7dd2377c2c47f9"
+      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.13/pre-commit_Linux_armv6.tar.gz"
+      sha256 "02fcf299b554f718907b2dc521ec84af5c4df3323f1c5e8a39ff23390587a52a"
       define_method(:install) do
         bin.install "pre-commit"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.12/pre-commit_Linux_arm64.tar.gz"
-      sha256 "84d194b1e23f4d3023027ca124ef6d3047033e9350c62394c62cc692bf986bf8"
+      url "https://github.com/blairham/go-pre-commit/releases/download/v4.6.13/pre-commit_Linux_arm64.tar.gz"
+      sha256 "0a126db6355a5088bea54babb7067b7c56842112f12b47d087e0d14920d9cec8"
       define_method(:install) do
         bin.install "pre-commit"
       end
