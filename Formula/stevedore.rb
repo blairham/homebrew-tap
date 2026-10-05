@@ -5,21 +5,21 @@
 class Stevedore < Formula
   desc "Release Docker/OCI images the way goreleaser releases binaries"
   homepage "https://github.com/blairham/stevedore"
-  version "1.0.6"
+  version "1.1.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/blairham/stevedore/releases/download/v1.0.6/stevedore_1.0.6_Darwin_x86_64.tar.gz"
-      sha256 "557268dcf921fc85fa44a9c2ccc8ab435819641b52f39062651fa3d9cbc2e671"
+      url "https://github.com/blairham/stevedore/releases/download/v1.1.0/stevedore_1.1.0_Darwin_x86_64.tar.gz"
+      sha256 "c74f4da82560e7ade2be573f84e80ed4c33b3afdf279090d2cb16cdf77acf779"
 
       define_method(:install) do
         bin.install "stevedore"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/blairham/stevedore/releases/download/v1.0.6/stevedore_1.0.6_Darwin_arm64.tar.gz"
-      sha256 "c64e7631bddd99f51ae62513e89bccab90cf5a1048f2ea101da3a393ce608947"
+      url "https://github.com/blairham/stevedore/releases/download/v1.1.0/stevedore_1.1.0_Darwin_arm64.tar.gz"
+      sha256 "3799cc456497ccacd871b5f1078d2897c60b6b6e8229ea41778ae1e2d16ffe5a"
 
       define_method(:install) do
         bin.install "stevedore"
@@ -29,15 +29,15 @@ class Stevedore < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/stevedore/releases/download/v1.0.6/stevedore_1.0.6_Linux_x86_64.tar.gz"
-      sha256 "17650d580ae710e11836e1002902033f79d233582e9b2a169c5268186e7dba41"
+      url "https://github.com/blairham/stevedore/releases/download/v1.1.0/stevedore_1.1.0_Linux_x86_64.tar.gz"
+      sha256 "8fe1adc64232e076714b4d6353a3bea588a57370cd19ee8fedf0e668ce5f96ec"
       define_method(:install) do
         bin.install "stevedore"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/stevedore/releases/download/v1.0.6/stevedore_1.0.6_Linux_arm64.tar.gz"
-      sha256 "e9f70480aef640bf5dbe845451121929fa953b9ea80a489810d6026da7494164"
+      url "https://github.com/blairham/stevedore/releases/download/v1.1.0/stevedore_1.1.0_Linux_arm64.tar.gz"
+      sha256 "7dce050e04ff5e495aa4ec61db842791d49d78ae864edaaba104b1ec67be2333"
       define_method(:install) do
         bin.install "stevedore"
       end
