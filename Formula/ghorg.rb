@@ -11,7 +11,7 @@ class Ghorg < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/blairham/ghorg/releases/download/v0.1.6/ghorg_0.1.6_Darwin_x86_64.tar.gz"
-      sha256 "99e7c76cdf1a0b3bab57cfb15ea485acf9c7bc34212b4cb84cb8492d896d1ed7"
+      sha256 "0c8db736b95335d255a2bf109ac362fe31c2461d5289f82ef6ebd1e87c5eddc1"
 
       define_method(:install) do
         bin.install "ghorg"
@@ -19,7 +19,7 @@ class Ghorg < Formula
     end
     if Hardware::CPU.arm?
       url "https://github.com/blairham/ghorg/releases/download/v0.1.6/ghorg_0.1.6_Darwin_arm64.tar.gz"
-      sha256 "15c9b508756b4a40826b97456845414da7e525d49a745e2ec619506dbd183af8"
+      sha256 "9d3b6e21610a6e10447bdb2f77265c299110ea998ac283d3b2eb761de25ccf9b"
 
       define_method(:install) do
         bin.install "ghorg"
@@ -30,14 +30,14 @@ class Ghorg < Formula
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
       url "https://github.com/blairham/ghorg/releases/download/v0.1.6/ghorg_0.1.6_Linux_x86_64.tar.gz"
-      sha256 "053b6a4258ae605bc734a716ac769f7c003783769fedccf2a975afb791bd91f6"
+      sha256 "d26e0076bf0b8b148136ec385ce15f3e150a1f879a237e55a13b8809f3a4963e"
       define_method(:install) do
         bin.install "ghorg"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/blairham/ghorg/releases/download/v0.1.6/ghorg_0.1.6_Linux_arm64.tar.gz"
-      sha256 "29aea5437da62e4711dcbb7af2280c0f3b94f9427c5f0218a9bdc77d920afc8b"
+      sha256 "c1f4d7192b0994cb0adc289b4a912529fb7bd41bfd22b04ec7364ffff9cd8d54"
       define_method(:install) do
         bin.install "ghorg"
       end
