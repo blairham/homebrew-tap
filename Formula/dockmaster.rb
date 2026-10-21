@@ -5,13 +5,13 @@
 class Dockmaster < Formula
   desc "k9s-style terminal UI for Docker"
   homepage "https://github.com/blairham/dockmaster"
-  version "0.1.0"
+  version "0.2.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/blairham/dockmaster/releases/download/v0.1.0/dockmaster_Darwin_x86_64.tar.gz"
-      sha256 "3d3568b6d2e6c4011f7563d9ea85546c6bab50971295e647bcfe964b8a6e5446"
+      url "https://github.com/blairham/dockmaster/releases/download/v0.2.0/dockmaster_Darwin_x86_64.tar.gz"
+      sha256 "df78568c2f4d75b73bab90159a23db75f9ca8e94f3462bffd24ef948a1777db3"
 
       define_method(:install) do
         bin.install "dockmaster"
@@ -19,8 +19,8 @@ class Dockmaster < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/blairham/dockmaster/releases/download/v0.1.0/dockmaster_Darwin_arm64.tar.gz"
-      sha256 "a39282dc5e0932d76748b5e4830dfe887a443fd8c740e2ab7ea7bd6eb62cad79"
+      url "https://github.com/blairham/dockmaster/releases/download/v0.2.0/dockmaster_Darwin_arm64.tar.gz"
+      sha256 "680b1287bac4c1f19ba31c3d4548caa357beedd40287afbd1d520e74856accf0"
 
       define_method(:install) do
         bin.install "dockmaster"
@@ -31,16 +31,16 @@ class Dockmaster < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/dockmaster/releases/download/v0.1.0/dockmaster_Linux_x86_64.tar.gz"
-      sha256 "daa0cbbbe6ab1d40ebb926a373bebf0327cbdd41448633bb70f6cebbf14a2478"
+      url "https://github.com/blairham/dockmaster/releases/download/v0.2.0/dockmaster_Linux_x86_64.tar.gz"
+      sha256 "4346a96a7b2bec5dc83aa1158ae92d608f0f5143b7f110131ebe2f2776f0f0fe"
       define_method(:install) do
         bin.install "dockmaster"
         bin.install_symlink "dockmaster" => "dm"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/dockmaster/releases/download/v0.1.0/dockmaster_Linux_arm64.tar.gz"
-      sha256 "a4560c33d0a1a2c15a709341798380d11eddb70bc377e93aa73f447cde509a84"
+      url "https://github.com/blairham/dockmaster/releases/download/v0.2.0/dockmaster_Linux_arm64.tar.gz"
+      sha256 "71ba7da0e7b04aef14bd1577e700408e48c2e41cbcbd6e57681a520afae9874e"
       define_method(:install) do
         bin.install "dockmaster"
         bin.install_symlink "dockmaster" => "dm"
