@@ -5,21 +5,21 @@
 class K4a < Formula
   desc "Terminal UI for Kafka clusters, in the style of k9s"
   homepage "https://github.com/blairham/k4a"
-  version "0.1.0"
+  version "0.1.1"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/blairham/k4a/releases/download/v0.1.0/k4a_Darwin_x86_64.tar.gz"
-      sha256 "2c39a4bd37427ff3404fa757c073217ef08e0676eafac3e5a4d854f476485dce"
+      url "https://github.com/blairham/k4a/releases/download/v0.1.1/k4a_Darwin_x86_64.tar.gz"
+      sha256 "25a5cb0bea079770df1645a2939635f3a30215b34131cb85e2d8cbd5c24b6c13"
 
       define_method(:install) do
         bin.install "k4a"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/blairham/k4a/releases/download/v0.1.0/k4a_Darwin_arm64.tar.gz"
-      sha256 "7cbec5282775618f1c122717f951b6df269576ce5d5f0fe6106bfe0d2078713f"
+      url "https://github.com/blairham/k4a/releases/download/v0.1.1/k4a_Darwin_arm64.tar.gz"
+      sha256 "b1697b9286748e1d105dac85258e2dcad33b00fd4eb40ee36e699efc26e6e66d"
 
       define_method(:install) do
         bin.install "k4a"
@@ -29,15 +29,15 @@ class K4a < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/k4a/releases/download/v0.1.0/k4a_Linux_x86_64.tar.gz"
-      sha256 "caac39b4d9ded39a226a71157698c924fcc50413f876b1427699e694cd701b0a"
+      url "https://github.com/blairham/k4a/releases/download/v0.1.1/k4a_Linux_x86_64.tar.gz"
+      sha256 "c6ecf42c69a08145916845ff276ca8ac9905a1ab9b08d02950ffb2480016964f"
       define_method(:install) do
         bin.install "k4a"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/k4a/releases/download/v0.1.0/k4a_Linux_arm64.tar.gz"
-      sha256 "83bc227a9563ecef79004de62fbb70354bf5e87773f5d7a562efbf0826f431f6"
+      url "https://github.com/blairham/k4a/releases/download/v0.1.1/k4a_Linux_arm64.tar.gz"
+      sha256 "bc028c17425e62e3e2e1cc69c71e8c8048eb3ede66957bf8f02fc69dceb24ffa"
       define_method(:install) do
         bin.install "k4a"
       end
