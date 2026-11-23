@@ -5,43 +5,24 @@
 class K4a < Formula
   desc "Terminal UI for Kafka clusters, in the style of k9s"
   homepage "https://github.com/blairham/k4a"
-  version "0.1.2"
+  url "https://github.com/blairham/k4a/releases/download/v0.1.3/k4a-0.1.3.tar.gz"
+  sha256 "2db1353829f6bf474a7533dbce24d694cf2d6c9592d93a70918d6be92be3a831"
+  version "0.1.3"
   license "Apache-2.0"
 
-  on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/blairham/k4a/releases/download/v0.1.2/k4a_Darwin_x86_64.tar.gz"
-      sha256 "714634e915611aba4d5ada7220a751397dce91e322e9a4e871267dd68a5cd69e"
-
-      define_method(:install) do
-        bin.install "k4a"
-      end
-    end
-    if Hardware::CPU.arm?
-      url "https://github.com/blairham/k4a/releases/download/v0.1.2/k4a_Darwin_arm64.tar.gz"
-      sha256 "abe8e2a30551c5bfe2b17577d78fe5ced2431ace937bface78f859890cda5d9c"
-
-      define_method(:install) do
-        bin.install "k4a"
-      end
-    end
+  bottle do
+    root_url "https://github.com/blairham/k4a/releases/download/v0.1.3"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "15eea4b2946e1a68511719e28785fece077cf91da95b8e4a1f86262fd3c3f4d5"
+    sha256 cellar: :any_skip_relocation, monterey: "a313cebc10b09a6cba7d4e05f5f7ea5c5a81e3712d800f132816bc7c930a0bda"
+    sha256 cellar: :any_skip_relocation, arm64_linux: "d29c74e6fe880ffef2de96148197d85255c7a427d292711788846dd21331639f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "7200e86a8680520a82e942eb05773061b02c15a3ed3fff4c7c93848ff693e0cb"
   end
 
-  on_linux do
-    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/k4a/releases/download/v0.1.2/k4a_Linux_x86_64.tar.gz"
-      sha256 "86f2a86ba685a95e58b7761c896a24aec1ef8fc29e5b0ce159bbb03d52f82cf5"
-      define_method(:install) do
-        bin.install "k4a"
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/k4a/releases/download/v0.1.2/k4a_Linux_arm64.tar.gz"
-      sha256 "18b9d88ae2ee270e3ca94d8941af746b41f674f7fb3b2d284b99acc7de46f500"
-      define_method(:install) do
-        bin.install "k4a"
-      end
-    end
+  depends_on "go" => :build
+
+  def install
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/blairham/k4a/internal/version.Version=0.1.3 -X github.com/blairham/k4a/internal/version.Commit=0e0bcc157e4406b59be98e860c122e0b83624114 -X github.com/blairham/k4a/internal/version.Date=2026-11-23T15:18:26Z", output: bin/"k4a"), "./cmd/k4a"
   end
 
   test do
