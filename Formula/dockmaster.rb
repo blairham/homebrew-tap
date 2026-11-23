@@ -5,47 +5,25 @@
 class Dockmaster < Formula
   desc "k9s-style terminal UI for Docker"
   homepage "https://github.com/blairham/dockmaster"
-  version "0.2.0"
+  url "https://github.com/blairham/dockmaster/releases/download/v0.2.1/dockmaster-0.2.1.tar.gz"
+  sha256 "792912e4134ad3bdf4e630e74f81bb56ff38a24ff89fa92e8539564db720f7dc"
+  version "0.2.1"
   license "Apache-2.0"
 
-  on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/blairham/dockmaster/releases/download/v0.2.0/dockmaster_Darwin_x86_64.tar.gz"
-      sha256 "df78568c2f4d75b73bab90159a23db75f9ca8e94f3462bffd24ef948a1777db3"
-
-      define_method(:install) do
-        bin.install "dockmaster"
-        bin.install_symlink "dockmaster" => "dm"
-      end
-    end
-    if Hardware::CPU.arm?
-      url "https://github.com/blairham/dockmaster/releases/download/v0.2.0/dockmaster_Darwin_arm64.tar.gz"
-      sha256 "680b1287bac4c1f19ba31c3d4548caa357beedd40287afbd1d520e74856accf0"
-
-      define_method(:install) do
-        bin.install "dockmaster"
-        bin.install_symlink "dockmaster" => "dm"
-      end
-    end
+  bottle do
+    root_url "https://github.com/blairham/dockmaster/releases/download/v0.2.1"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "af2784c0b0dc4229153cdad9e5afbaa690ed2dd685dbc005f889792ec9aac0c9"
+    sha256 cellar: :any_skip_relocation, monterey: "bff171a0e867cad99da98375b66a1379328d3ad4efc03685151e096e31f7d077"
+    sha256 cellar: :any_skip_relocation, arm64_linux: "3b25b5eb28fddbf60165a1fd4ffe328fd548e050d856032221884b0d76867b02"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "a5d8b670869a903bc4f42902cadb4b45c723fae5a3d98c61bdad09a953a56c88"
   end
 
-  on_linux do
-    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/dockmaster/releases/download/v0.2.0/dockmaster_Linux_x86_64.tar.gz"
-      sha256 "4346a96a7b2bec5dc83aa1158ae92d608f0f5143b7f110131ebe2f2776f0f0fe"
-      define_method(:install) do
-        bin.install "dockmaster"
-        bin.install_symlink "dockmaster" => "dm"
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/dockmaster/releases/download/v0.2.0/dockmaster_Linux_arm64.tar.gz"
-      sha256 "71ba7da0e7b04aef14bd1577e700408e48c2e41cbcbd6e57681a520afae9874e"
-      define_method(:install) do
-        bin.install "dockmaster"
-        bin.install_symlink "dockmaster" => "dm"
-      end
-    end
+  depends_on "go" => :build
+
+  def install
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/blairham/dockmaster/internal/version.Version=0.2.1 -X github.com/blairham/dockmaster/internal/version.Commit=26b5e9b -X github.com/blairham/dockmaster/internal/version.Date=2026-11-23T16:28:45Z", output: bin/"dockmaster"), "."
+    bin.install_symlink "dockmaster" => "dm"
   end
 
   test do
