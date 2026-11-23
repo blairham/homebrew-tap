@@ -5,24 +5,24 @@
 class K4a < Formula
   desc "Terminal UI for Kafka clusters, in the style of k9s"
   homepage "https://github.com/blairham/k4a"
-  url "https://github.com/blairham/k4a/releases/download/v0.2.0/k4a-0.2.0.tar.gz"
-  sha256 "e9d52a91a5f6921b5f2421f9387b318bb6a3070c0712e842adf9821214826cd2"
-  version "0.2.0"
+  url "https://github.com/blairham/k4a/releases/download/v0.3.0/k4a-0.3.0.tar.gz"
+  sha256 "e082aa567fe0ec7c0de76895b82e36a419ba3fa6e72897999c9b8975c84979c2"
+  version "0.3.0"
   license "Apache-2.0"
 
   bottle do
-    root_url "https://github.com/blairham/k4a/releases/download/v0.2.0"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "349ca17e86913bbb74801c684507ddfa60e033b413300669b195270ba2586de8"
-    sha256 cellar: :any_skip_relocation, monterey: "92ea7eda67006144272be7df4e8229a4b3587f28289c15695cbf1d73e7c0f8ff"
-    sha256 cellar: :any_skip_relocation, arm64_linux: "40498fb89b434be01da26185dbdbe0c45326ce3d6d3fa7cc0147b8e4b850155a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "385db1b7606b7e75b981d4fd66b77e092ca27b3ee76b89b12b8abdb56b06ee93"
+    root_url "https://github.com/blairham/k4a/releases/download/v0.3.0"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "6c52a6c383207d9022aa19721f37d1d64c8a2e7844d013654a68742f4fe56f2a"
+    sha256 cellar: :any_skip_relocation, monterey: "46f1ed66d64117861b580fb23e630feef165121123545f5c32f1f868a185e955"
+    sha256 cellar: :any_skip_relocation, arm64_linux: "2e56099cf13b365960ba587c5abdcbf89046efd73e50250ff93d083e68396c01"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "839a5ee45090a053d31dfaf9abe5398908563f13bd954b2b5c109d065b045fc3"
   end
 
   depends_on "go" => :build
 
   def install
     ENV["CGO_ENABLED"] = "0"
-    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/blairham/k4a/internal/version.Version=0.2.0 -X github.com/blairham/k4a/internal/version.Commit=16d8a6605c56d13c7de3edc4daa757646cf8aeab -X github.com/blairham/k4a/internal/version.Date=2026-11-23T15:51:52Z", output: bin/"k4a"), "./cmd/k4a"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/blairham/k4a/internal/version.Version=0.3.0 -X github.com/blairham/k4a/internal/version.Commit=e03d825f2dc8fa0eebd65422e3493e96816fc853 -X github.com/blairham/k4a/internal/version.Date=2026-11-23T16:17:27Z", output: bin/"k4a"), "./cmd/k4a"
   end
 
   test do
