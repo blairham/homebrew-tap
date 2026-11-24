@@ -5,43 +5,24 @@
 class Stevedore < Formula
   desc "Release Docker/OCI images the way goreleaser releases binaries"
   homepage "https://github.com/blairham/stevedore"
-  version "1.2.1"
+  url "https://github.com/blairham/stevedore/releases/download/v1.2.2/stevedore-1.2.2.tar.gz"
+  sha256 "fdbc1ef82d34677305196e0c7928da6573aee3504aec72cfb4d22d849f3b0871"
+  version "1.2.2"
   license "Apache-2.0"
 
-  on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/blairham/stevedore/releases/download/v1.2.1/stevedore_1.2.1_Darwin_x86_64.tar.gz"
-      sha256 "685c907c009d32c622117b9522045dfd5bd1d388151aca3ff356572f48b5580f"
-
-      define_method(:install) do
-        bin.install "stevedore"
-      end
-    end
-    if Hardware::CPU.arm?
-      url "https://github.com/blairham/stevedore/releases/download/v1.2.1/stevedore_1.2.1_Darwin_arm64.tar.gz"
-      sha256 "2439c480576a46c863cf1b827d496376b771a51e5d6109b67821791a2497812e"
-
-      define_method(:install) do
-        bin.install "stevedore"
-      end
-    end
+  bottle do
+    root_url "https://github.com/blairham/stevedore/releases/download/v1.2.2"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "fee0ef71e943c6ec6db56a2b97d31ae0fcfb2641ef23667a0c34f31df597b4c2"
+    sha256 cellar: :any_skip_relocation, monterey: "814b704da78a9a01d5cfdaf5c53fec4101fc997378855ce433baab5616cde10e"
+    sha256 cellar: :any_skip_relocation, arm64_linux: "d2639bba4c8d21672e41c911e6123fab8c061eadbe4f8c41d11ebc53312e1002"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "0c8814515220113676937754652fe9d095ea2793f46ca64f716c504855364098"
   end
 
-  on_linux do
-    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/stevedore/releases/download/v1.2.1/stevedore_1.2.1_Linux_x86_64.tar.gz"
-      sha256 "46676744dc165aee973b073aada790797a0397a4a344b7e1e49a6dadd4db984f"
-      define_method(:install) do
-        bin.install "stevedore"
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/stevedore/releases/download/v1.2.1/stevedore_1.2.1_Linux_arm64.tar.gz"
-      sha256 "bbbb63139e581071ed49f7f2c7812db03adf8d09ac11497b29eac3cbad98749f"
-      define_method(:install) do
-        bin.install "stevedore"
-      end
-    end
+  depends_on "go" => :build
+
+  def install
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=1.2.2", output: bin/"stevedore"), "."
   end
 
   test do
