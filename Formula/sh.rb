@@ -5,142 +5,40 @@
 class Sh < Formula
   desc "A shell parser, interpreter and formatter in Go, with bash, zsh, ksh, dash and ash dialects"
   homepage "https://github.com/blairham/sh"
-  version "0.0.41"
+  url "https://github.com/blairham/sh/releases/download/v0.0.42/sh-0.0.42.tar.gz"
+  sha256 "3c6e6a0518f32244f9c56f9ea3790ee9453859cafb9025542f2c950567874ffc"
+  version "0.0.42"
   license "Apache-2.0"
 
-  on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/blairham/sh/releases/download/v0.0.41/sh_Darwin_x86_64.tar.gz"
-      sha256 "15810bf47413a259080dbefd5cfb787ea99c10546a3040c015c1c61002f1d7f9"
-
-      define_method(:install) do
-        # Every shell in the archive, `ash` included. An explicit list is what
-        # dropped it once already: the archive carries all six, and
-        # `libexec.install` silently skips the name it was not given, so the keg
-        # came out missing a shell the caveats below promise by name.
-        libexec.install "sh", "bash", "zsh", "ksh", "dash", "ash"
-        # **`shfmt` goes into `bin`, and it is the one binary here that should.**
-        # The rule above is about names that are *resolved implicitly*: a `bash`
-        # ahead of `/bin` on PATH answers for every shebang, every `system()` and
-        # every `chsh` on the machine. Nothing resolves a formatter that way — it
-        # is only ever called by name, on purpose, by an editor, a pre-commit hook
-        # or a Makefile, and every one of those is a caller that cannot be handed
-        # a keg-internal path. A formatter behind `opt_libexec` is a formatter
-        # nothing calls.
-        #
-        # The real hazard is the other formula: homebrew-core ships mvdan.cc/sh's
-        # `shfmt`, which wants the same `bin/shfmt`. `conflicts:` below declares
-        # that, so Homebrew refuses with a sentence naming both formulas instead
-        # of the bare "Could not symlink bin/shfmt" that silence produces.
-        bin.install "shfmt"
-        # Not into libexec beside the binaries. The function search is
-        # `<prefix>/share/sh/site-functions` then `<prefix>/share/sh/functions`,
-        # and the prefix a binary in the keg's libexec derives is the keg — so
-        # this is the directory the shell will actually look in, and
-        # `share/sh/site-functions` is left for whatever a person installs later.
-        (share/"sh").install "share/sh/functions"
-      end
-    end
-    if Hardware::CPU.arm?
-      url "https://github.com/blairham/sh/releases/download/v0.0.41/sh_Darwin_arm64.tar.gz"
-      sha256 "93cd4c5276b578c47d6de67ce4f56e3291e901909634d1d123c731c713fa8745"
-
-      define_method(:install) do
-        # Every shell in the archive, `ash` included. An explicit list is what
-        # dropped it once already: the archive carries all six, and
-        # `libexec.install` silently skips the name it was not given, so the keg
-        # came out missing a shell the caveats below promise by name.
-        libexec.install "sh", "bash", "zsh", "ksh", "dash", "ash"
-        # **`shfmt` goes into `bin`, and it is the one binary here that should.**
-        # The rule above is about names that are *resolved implicitly*: a `bash`
-        # ahead of `/bin` on PATH answers for every shebang, every `system()` and
-        # every `chsh` on the machine. Nothing resolves a formatter that way — it
-        # is only ever called by name, on purpose, by an editor, a pre-commit hook
-        # or a Makefile, and every one of those is a caller that cannot be handed
-        # a keg-internal path. A formatter behind `opt_libexec` is a formatter
-        # nothing calls.
-        #
-        # The real hazard is the other formula: homebrew-core ships mvdan.cc/sh's
-        # `shfmt`, which wants the same `bin/shfmt`. `conflicts:` below declares
-        # that, so Homebrew refuses with a sentence naming both formulas instead
-        # of the bare "Could not symlink bin/shfmt" that silence produces.
-        bin.install "shfmt"
-        # Not into libexec beside the binaries. The function search is
-        # `<prefix>/share/sh/site-functions` then `<prefix>/share/sh/functions`,
-        # and the prefix a binary in the keg's libexec derives is the keg — so
-        # this is the directory the shell will actually look in, and
-        # `share/sh/site-functions` is left for whatever a person installs later.
-        (share/"sh").install "share/sh/functions"
-      end
-    end
+  bottle do
+    root_url "https://github.com/blairham/sh/releases/download/v0.0.42"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "f40f28b716164c08e121b74ae08476969f068637382073723b6e827c679b21ad"
+    sha256 cellar: :any_skip_relocation, monterey: "a37a0977b0ac18e339e0d787c724cb22302965d9e319f6d3a6e198c87c7e948f"
+    sha256 cellar: :any_skip_relocation, arm64_linux: "1a58f6d2dea7c44364cc09da60d22b3c0db025514704f98ebd22ab6cb1df8980"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "68e34b19bd3fa11ee8fe0f7769465431553372623d2ed6b47d5f987d47329239"
   end
 
-  on_linux do
-    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/sh/releases/download/v0.0.41/sh_Linux_x86_64.tar.gz"
-      sha256 "b725750419978e84537591d264cb7b45b89f392def1f6595595e4bc27e9708a8"
-      define_method(:install) do
-        # Every shell in the archive, `ash` included. An explicit list is what
-        # dropped it once already: the archive carries all six, and
-        # `libexec.install` silently skips the name it was not given, so the keg
-        # came out missing a shell the caveats below promise by name.
-        libexec.install "sh", "bash", "zsh", "ksh", "dash", "ash"
-        # **`shfmt` goes into `bin`, and it is the one binary here that should.**
-        # The rule above is about names that are *resolved implicitly*: a `bash`
-        # ahead of `/bin` on PATH answers for every shebang, every `system()` and
-        # every `chsh` on the machine. Nothing resolves a formatter that way — it
-        # is only ever called by name, on purpose, by an editor, a pre-commit hook
-        # or a Makefile, and every one of those is a caller that cannot be handed
-        # a keg-internal path. A formatter behind `opt_libexec` is a formatter
-        # nothing calls.
-        #
-        # The real hazard is the other formula: homebrew-core ships mvdan.cc/sh's
-        # `shfmt`, which wants the same `bin/shfmt`. `conflicts:` below declares
-        # that, so Homebrew refuses with a sentence naming both formulas instead
-        # of the bare "Could not symlink bin/shfmt" that silence produces.
-        bin.install "shfmt"
-        # Not into libexec beside the binaries. The function search is
-        # `<prefix>/share/sh/site-functions` then `<prefix>/share/sh/functions`,
-        # and the prefix a binary in the keg's libexec derives is the keg — so
-        # this is the directory the shell will actually look in, and
-        # `share/sh/site-functions` is left for whatever a person installs later.
-        (share/"sh").install "share/sh/functions"
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/blairham/sh/releases/download/v0.0.41/sh_Linux_arm64.tar.gz"
-      sha256 "4d3f629901659047cae105d256aa8fd4de1cc9ec1b17d143dc316cdfde5bf150"
-      define_method(:install) do
-        # Every shell in the archive, `ash` included. An explicit list is what
-        # dropped it once already: the archive carries all six, and
-        # `libexec.install` silently skips the name it was not given, so the keg
-        # came out missing a shell the caveats below promise by name.
-        libexec.install "sh", "bash", "zsh", "ksh", "dash", "ash"
-        # **`shfmt` goes into `bin`, and it is the one binary here that should.**
-        # The rule above is about names that are *resolved implicitly*: a `bash`
-        # ahead of `/bin` on PATH answers for every shebang, every `system()` and
-        # every `chsh` on the machine. Nothing resolves a formatter that way — it
-        # is only ever called by name, on purpose, by an editor, a pre-commit hook
-        # or a Makefile, and every one of those is a caller that cannot be handed
-        # a keg-internal path. A formatter behind `opt_libexec` is a formatter
-        # nothing calls.
-        #
-        # The real hazard is the other formula: homebrew-core ships mvdan.cc/sh's
-        # `shfmt`, which wants the same `bin/shfmt`. `conflicts:` below declares
-        # that, so Homebrew refuses with a sentence naming both formulas instead
-        # of the bare "Could not symlink bin/shfmt" that silence produces.
-        bin.install "shfmt"
-        # Not into libexec beside the binaries. The function search is
-        # `<prefix>/share/sh/site-functions` then `<prefix>/share/sh/functions`,
-        # and the prefix a binary in the keg's libexec derives is the keg — so
-        # this is the directory the shell will actually look in, and
-        # `share/sh/site-functions` is left for whatever a person installs later.
-        (share/"sh").install "share/sh/functions"
-      end
-    end
-  end
+  depends_on "go" => :build
 
   conflicts_with "shfmt"
+
+  def install
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=0.0.42", output: libexec/"sh"), "./cmd/sh"
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=0.0.42", output: libexec/"zsh"), "./cmd/zsh"
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=0.0.42", output: libexec/"ksh"), "./cmd/ksh"
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=0.0.42", output: libexec/"dash"), "./cmd/dash"
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=0.0.42", output: libexec/"ash"), "./cmd/ash"
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=0.0.42", output: libexec/"bash"), "./cmd/bash"
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=0.0.42", output: bin/"shfmt"), "./cmd/shfmt"
+    (prefix/"share/sh").install "share/sh/functions" => "functions"
+  end
 
   def caveats
     <<~EOS
